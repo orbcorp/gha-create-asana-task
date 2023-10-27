@@ -79,7 +79,7 @@ function run() {
         }
         catch (error) {
             if (error instanceof Error) {
-                core.error(error);
+                core.error(error.value.errors); // eslint-disable-line @typescript-eslint/no-explicit-any
                 core.setFailed(error.message);
             }
         }
