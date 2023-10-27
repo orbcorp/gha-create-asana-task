@@ -38,7 +38,7 @@ async function run(): Promise<void> {
     core.setOutput('asana-task-id', task.gid)
   } catch (error) {
     if (error instanceof Error) {
-      core.error(error)
+      core.error((error as any).value) // eslint-disable-line @typescript-eslint/no-explicit-any
       core.setFailed(error.message)
     }
   }
