@@ -14,7 +14,7 @@ inputs:
     required: true
   asana-section-id:
     description: 'Your Asana Section ID (column the task should belong to)'
-    required: true
+    required: false
   asana-task-name:
     description: 'Name for Asana task'
     required: true
@@ -26,6 +26,9 @@ inputs:
     required: false
   asana-tags:
     description: 'List of tag IDs to associate with Asana task'
+    required: false
+  asana-custom-fields:
+    description: 'JSON object of custom field IDs and values to associate with Asana task'
     required: false
   
 
