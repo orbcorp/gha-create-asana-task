@@ -6,7 +6,7 @@ This Github Action allows you to create an Asana task within your Github workflo
 
 ```yaml
 - name: Create Asana task
-  uses: honeycombio/gha-create-asana-task@main
+  uses: orbcorp/gha-create-asana-task@main
   with:
     asana-secret: ${{ secrets.ASANA_PAT }}
     asana-workspace-id: ${{ secrets.ASANA_WORKSPACE_ID }}
