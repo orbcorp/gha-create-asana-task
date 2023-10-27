@@ -65,7 +65,7 @@ function run() {
             const memberships = sectionId
                 ? [{ project: projectId, section: sectionId }]
                 : undefined;
-            yield client.tasks.create({
+            const task = yield client.tasks.create({
                 workspace: workspaceId,
                 projects: [projectId],
                 memberships,
@@ -75,10 +75,13 @@ function run() {
                 tags: tags ? JSON.parse(tags) : undefined,
                 custom_fields: customFields ? JSON.parse(customFields) : undefined
             });
+            core.setOutput('asana-task-id', task.gid);
         }
         catch (error) {
-            if (error instanceof Error)
+            if (error instanceof Error) {
+                core.error(error);
                 core.setFailed(error.message);
+            }
         }
     });
 }

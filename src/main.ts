@@ -24,7 +24,7 @@ async function run(): Promise<void> {
       ? [{project: projectId, section: sectionId}]
       : undefined
 
-    await client.tasks.create({
+    const task = await client.tasks.create({
       workspace: workspaceId,
       projects: [projectId],
       memberships,
@@ -34,8 +34,13 @@ async function run(): Promise<void> {
       tags: tags ? JSON.parse(tags) : undefined,
       custom_fields: customFields ? JSON.parse(customFields) : undefined
     })
+
+    core.setOutput('asana-task-id', task.gid)
   } catch (error) {
-    if (error instanceof Error) core.setFailed(error.message)
+    if (error instanceof Error) {
+      core.error(error)
+      core.setFailed(error.message)
+    }
   }
 }
 
